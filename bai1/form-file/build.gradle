@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'war' // Dùng plugin 'war' để đóng gói thành file .war
+}
+
+group 'com.codegym'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+// Cấu hình mã hóa (encoding) và phiên bản Java
+java {
+    sourceCompatibility = JavaVersion.VERSION_17 // Sử dụng Java 17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    // Phiên bản Spring 6.x tương thích với Jakarta EE và Tomcat 10+
+    def springVersion = '6.1.1'
+    implementation group: 'org.springframework', name: 'spring-core', version: springVersion
+    implementation group: 'org.springframework', name: 'spring-context', version: springVersion
+    implementation group: 'org.springframework', name: 'spring-web', version: springVersion
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: springVersion
+
+    // CHÚ Ý: ĐÃ LOẠI BỎ 'commons-fileupload' và 'commons-io'
+    // vì chúng ta đang dùng StandardServletMultipartResolver tích hợp sẵn.
+
+    // Phụ thuộc cho Servlet, JSP và JSTL (Jakarta EE)
+    // Cung cấp bởi Tomcat/Container (dùng 'compileOnly')
+    compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0'
+    compileOnly group: 'jakarta.servlet.jsp', name: 'jakarta.servlet.jsp-api', version: '3.1.1'
+
+    // JSTL (Jakarta Standard Tag Library)
+    implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '3.0.0'
+    implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.1'
+
+    // Phụ thuộc cho Tomcat (dùng khi chạy local trong IDE)
+    // Chuyển sang compileOnly nếu bạn deploy file .war lên Tomcat bên ngoài
+    def tomcatVersion = '10.1.5'
+    implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: tomcatVersion
+    implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: tomcatVersion
+}
+
+// Loại bỏ cấu hình WAR tùy chỉnh gây lỗi trùng lặp module-info.class
+// Giữ cấu hình WAR chuẩn của plugin 'war'
+war {
+    archiveFileName = 'form-file-app.war'
+}
