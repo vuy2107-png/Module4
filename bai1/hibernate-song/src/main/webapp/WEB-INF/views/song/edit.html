@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sửa Thông tin Bài hát</title>
+</head>
+<body>
+<h1>Sửa Thông tin Bài hát</h1>
+<p>
+    <a th:href="@{/songs}">Quay lại danh sách</a>
+</p>
+
+<form th:action="@{/songs/edit}" th:object="${songForm}" method="post">
+
+    <input type="hidden" th:field="*{id}"/>
+
+    <table>
+        <tr>
+            <td>Tên Bài hát:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Nghệ sĩ:</td>
+            <td><input type="text" th:field="*{artist}"/></td>
+        </tr>
+        <tr>
+            <td>Thể loại:</td>
+            <td><input type="text" th:field="*{genre}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Cập nhật"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách Bài hát</title>
+</head>
+<body>
+<h1>Danh sách Bài hát</h1>
+<p>
+    <a th:href="@{/songs/create}">Thêm Bài hát Mới</a>
+</p>
+
+<div th:if="${message}" style="color: green;">
+    <p th:text="${message}"></p>
+</div>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Tên Bài hát</th>
+        <th>Nghệ sĩ</th>
+        <th>Thể loại</th>
+        <th>Phát nhạc</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="song, iterStat : ${songs}">
+        <td th:text="${iterStat.index + 1}"></td>
+        <td th:text="${song.name}"></td>
+        <td th:text="${song.artist}"></td>
+        <td th:text="${song.genre}"></td>
+        <td>
+            <audio controls>
+                <source th:src="@{'/music/' + ${song.filePath}}" type="audio/mpeg">
+                Trình duyệt của bạn không hỗ trợ thẻ audio.
+            </audio>
+        </td>
+        <td>
+            <a th:href="@{/songs/edit/{id}(id=${song.id})}">Sửa</a> |
+            <a th:href="@{/songs/delete/{id}(id=${song.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa bài hát?');">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
