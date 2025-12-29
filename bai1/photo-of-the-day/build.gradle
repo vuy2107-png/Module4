@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // Servlet API - Tomcat 10
+    providedCompile 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    // JSP + JSTL (Jakarta)
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+
+    // JPA API (Jakarta)
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+
+    // Hibernate 6 (JPA Provider)
+    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
+
+    // MySQL
+    implementation 'mysql:mysql-connector-java:8.0.33'
+}
