@@ -13,9 +13,9 @@ import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan(basePackages = "com.codegym.demothymeleaf")
+@Configuration //Nói với Spring: Đây là file cấu hình, thay cho applicationContext.xml
+@EnableWebMvc //Kích hoạt Spring MVC, DispatcherServlet, Controller, @RequestMapping
+@ComponentScan(basePackages = "com.codegym.demothymeleaf") // Quét tạo bean cho @Controller, @Servlet, @Repository, @Component
 public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAware {
     private ApplicationContext applicationContext;
 

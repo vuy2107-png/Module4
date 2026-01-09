@@ -21,7 +21,7 @@ public class EmployeeController {
         // Tạo một đối tượng Employee rỗng và đưa vào Model
         // Đối tượng này được liên kết với form:form (modelAttribute="employee") trong create.jsp
         model.addAttribute("employee", new Employee());
-        return "employee/create"; // Trả về view: /WEB-INF/views/employee/create.jsp
+        return "/employee/create"; // Trả về view: /WEB-INF/views/employee/create.jsp
     }
 
     /**
@@ -38,6 +38,6 @@ public class EmployeeController {
         model.addAttribute("contactNumber", employee.getContactNumber());
         model.addAttribute("id", employee.getId());
 
-        return "employee/info"; // Trả về view: /WEB-INF/views/employee/info.jsp
+        return "/employee/info"; // Trả về view: /WEB-INF/views/employee/info.jsp
     }
 }

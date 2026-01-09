@@ -1,5 +1,7 @@
 package com.codegym.customermanagement.configuration;
 
+import com.codegym.customermanagement.service.HibernateCustomerService;
+import com.codegym.customermanagement.service.ICustomerService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -48,5 +50,10 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
+    }
+
+    @Bean
+    public ICustomerService customerService(){
+        return new HibernateCustomerService();
     }
 }

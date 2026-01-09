@@ -16,8 +16,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {
+
+    // Field Base
     @Autowired
     private ICustomerService customerService;
+
+    // Setter Base
+
+    // Constructor Base
 
     @GetMapping("")
     public String index(Model model) {

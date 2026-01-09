@@ -18,7 +18,11 @@ import java.util.List;
 public class CustomerController {
 
     // Khởi tạo Service (Lưu ý: Trong thực tế nên dùng Dependency Injection (@Autowired))
-    private final ICustomerService customerService = new CustomerService();
+    private final ICustomerService customerService;
+
+    public CustomerController(ICustomerService customerService){
+        this.customerService = customerService;
+    }
 
     // 1. READ (Hiển thị danh sách)
     // Ánh xạ tới: /customers
@@ -90,3 +94,9 @@ public class CustomerController {
         return "/view"; // Trả về view: /WEB-INF/views/view.html
     }
 }
+
+//Nhận request từ user
+//
+//Gọi Model / Service xử lý
+//
+//Chọn View để trả về

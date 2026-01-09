@@ -1,12 +1,14 @@
 package com.codegym.demothymeleaf.service;
 
 import com.codegym.demothymeleaf.model.Customer;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class CustomerService implements ICustomerService{
     private static final Map<Integer, Customer> customers;
 
