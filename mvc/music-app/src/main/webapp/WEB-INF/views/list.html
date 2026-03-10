@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Music List</title>
+</head>
+<body>
+
+<h2>Music List</h2>
+
+<a href="/musics/create">Create New Music</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Artist</th>
+        <th>Genre</th>
+        <th>Listen</th>
+        <th>Actions</th>
+    </tr>
+
+    <tr th:each="music : ${musics}">
+        <td th:text="${music.id}"></td>
+        <td th:text="${music.name}"></td>
+        <td th:text="${music.artist}"></td>
+        <td th:text="${music.genre}"></td>
+
+        <td>
+            <audio controls>
+                <source th:src="@{'/music/' + ${music.filePath}}" type="audio/mpeg">
+            </audio>
+        </td>
+
+        <td>
+            <a th:href="@{'/musics/' + ${music.id} + '/edit'}">Edit</a>
+            <a th:href="@{'/musics/' + ${music.id} + '/delete'}">Delete</a>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Music</title>
+</head>
+<body>
+
+<h2>Create Music</h2>
+
+<form th:action="@{/musics/create}" method="post" enctype="multipart/form-data">
+
+    <label>Name</label>
+    <input type="text" name="name">
+
+    <br><br>
+
+    <label>Artist</label>
+    <input type="text" name="artist">
+
+    <br><br>
+
+    <label>Genre</label>
+    <input type="text" name="genre">
+
+    <br><br>
+
+    <label>Upload File</label>
+    <input type="file" name="file">
+
+    <br><br>
+
+    <button type="submit">Create</button>
+
+</form>
+
+<a href="/musics">Back</a>
+
+</body>
+</html>
